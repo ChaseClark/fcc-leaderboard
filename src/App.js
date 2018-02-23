@@ -1,43 +1,43 @@
-import React, { Component } from "react";
-import "./App.css";
-import axios from "axios";
-import Table from "react-bootstrap/lib/Table";
-import Image from "react-bootstrap/lib/Image";
-import 'font-awesome/css/font-awesome.css'
+import React, { Component } from "react"
+import "./App.css"
+import axios from "axios"
+import Table from "react-bootstrap/lib/Table"
+import Image from "react-bootstrap/lib/Image"
+import "font-awesome/css/font-awesome.css"
 
 class App extends Component {
   state = {
     top100Days: [],
     top100AllTime: [],
     current: true
-  };
+  }
 
   //Get FCC Data Func
   getFCCData(url, stateName) {
     axios.get(url).then(({ data }) => {
-      this.setState({ [stateName]: data });
-    });
+      this.setState({ [stateName]: data })
+    })
   }
 
   componentDidMount() {
     this.getFCCData(
       "https://fcctop100.herokuapp.com/api/fccusers/top/recent",
       "top100Days"
-    );
+    )
     this.getFCCData(
       "https://fcctop100.herokuapp.com/api/fccusers/top/alltime",
       "top100AllTime"
-    );
+    )
   }
 
   changeTable(value) {
     if (this.state.current !== value) {
-      this.setState({ current: value });
+      this.setState({ current: value })
     }
   }
 
   render() {
-    const { top100Days, top100AllTime, current } = this.state;
+    const { top100Days, top100AllTime, current } = this.state
     return (
       <div className="App container">
         <Table striped bordered condensed hover className="color-black">
@@ -81,8 +81,8 @@ class App extends Component {
 
         </Table>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
